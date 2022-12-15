@@ -6,7 +6,6 @@ bot = telebot.TeleBot('5974623360:AAFGyCUxjqQmkfA7B9oxENIAoCFq5Z2PpUM')
 
 @bot.message_handler(commands=["start"])
 def start(m, res=False):
-        # Добавляем две кнопки
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         std = types.KeyboardButton("Заведующие")
         std1 = types.KeyboardButton("Председатели")
@@ -23,10 +22,8 @@ def start(m, res=False):
         markup.add(std5)
         markup.add(std6)
         bot.send_message(m.chat.id, 'Привет! Что тебе интересно узнать о студсовете общежития №11?',  reply_markup=markup)
-# Получение сообщений от юзера
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
-    # Если юзер прислал 1, выдаем ему случайный факт
     if message.text == 'Заведующие' :
         bot.send_photo(message.chat.id, 'https://ibb.co/DMXjJ2Y', 'Чемезова Ольга Витальевна')
         bot.send_photo(message.chat.id, 'https://ibb.co/vZYrJcZ', 'Савченко Наталья Геннадьевна')
@@ -59,6 +56,4 @@ def handle_text(message):
     elif message.text == 'Сантройка':
         bot.send_photo(message.chat.id, 'https://ibb.co/GdyhSg0', 'Бельков Кирилл - председатель сантройки')
         bot.reply_to(message, 'Санитарный сектор следит за чистотой и порядком в общежитии, проверяя каждую неделю комнаты проживающих, а также проводя акции, связанные с гигиеной, экологией\n\nСостав сантройки:\nБельков Кирилл\nПеревалова Анна\nРоманова Мария\nЦымпилова Уржина\nСеменников Тимур\nПерелыгин Олег\nКармышев Дмитрий')
-    # Отсылаем юзеру сообщение в его чат
-# Запускаем бота
 bot.polling(none_stop=True, interval=0)
